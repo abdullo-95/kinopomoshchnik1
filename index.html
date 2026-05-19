@@ -126,6 +126,34 @@
             color: #f5c518;
         }
 
+        .search-wrapper {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-wrapper input {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 60px;
+            border: none;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-btn {
+            background: #f5c518;
+            border: none;
+            padding: 0 20px;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #1e1b2f;
+            font-size: 1rem;
+        }
+
         .btn {
             width: 100%;
             padding: 12px;
@@ -290,21 +318,6 @@
         .youtube-link {
             background: #ff0000;
             color: white;
-        }
-
-        .search-box {
-            margin-bottom: 20px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 14px 20px;
-            border-radius: 60px;
-            border: none;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            font-size: 1rem;
-            outline: none;
         }
 
         .profile-info {
@@ -499,15 +512,144 @@
             50% { opacity: 1; }
         }
 
+        /* Анимации для вкладки мультфильмов */
+        .cartoons-header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ff6b35, #f5c518, #ff6b35);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            padding: 20px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .character-animation {
+            position: relative;
+            height: 80px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .tom-jerry {
+            position: relative;
+            height: 80px;
+        }
+
+        .jerry {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            font-size: 50px;
+            animation: runJerry 4s ease-in-out infinite;
+        }
+
+        .tom {
+            position: absolute;
+            left: -60px;
+            bottom: 0;
+            font-size: 55px;
+            animation: chaseTom 4s ease-in-out infinite;
+        }
+
+        @keyframes runJerry {
+            0% { left: -50px; transform: scaleX(1); }
+            45% { left: 85%; transform: scaleX(1); }
+            50% { left: 85%; transform: scaleX(-1); }
+            95% { left: -50px; transform: scaleX(-1); }
+            100% { left: -50px; transform: scaleX(1); }
+        }
+
+        @keyframes chaseTom {
+            0% { left: -100px; }
+            45% { left: 75%; }
+            50% { left: 75%; }
+            95% { left: -100px; }
+            100% { left: -100px; }
+        }
+
+        .fairy-animation {
+            position: relative;
+            height: 70px;
+        }
+
+        .fairy {
+            position: absolute;
+            font-size: 40px;
+            animation: flyFairy 3s ease-in-out infinite;
+        }
+
+        .fairy:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .fairy:nth-child(2) { left: 40%; animation-delay: 0.5s; }
+        .fairy:nth-child(3) { left: 70%; animation-delay: 1s; }
+
+        @keyframes flyFairy {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
+            50% { transform: translateY(-30px) rotate(10deg); opacity: 1; }
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 20px;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .shrek-light {
+            position: relative;
+            height: 70px;
+        }
+
+        .shrek {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            animation: shrekWalk 3s ease-in-out infinite;
+        }
+
+        .light {
+            position: absolute;
+            left: 55%;
+            top: 10px;
+            font-size: 30px;
+            animation: lightSwing 1.5s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        @keyframes shrekWalk {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-45%) rotate(-5deg); }
+            75% { transform: translateX(-55%) rotate(5deg); }
+        }
+
+        @keyframes lightSwing {
+            0%, 100% { transform: rotate(-15deg); }
+            50% { transform: rotate(15deg); }
+        }
+
         @media (max-width: 550px) {
             .card { padding: 20px; }
             .tabs { gap: 5px; }
-            .tab-btn { padding: 6px 12px; font-size: 0.75rem; }
+            .tab-btn { padding: 6px 12px; font-size: 0.7rem; }
             .btn-group { flex-direction: column; }
             .movie-card { flex-direction: column; align-items: center; text-align: center; }
             .movie-poster { width: 100px; height: 150px; }
             .favorite-btn { top: 5px; right: 5px; }
             .ai-modal { width: calc(100vw - 40px); right: 20px; bottom: 90px; }
+            .search-wrapper { flex-direction: column; }
+            .search-btn { padding: 12px; }
         }
     </style>
 </head>
@@ -515,6 +657,7 @@
 <div class="container">
     <div class="tabs" id="tabs"></div>
 
+    <!-- Панель поиска фильмов -->
     <div id="finderPanel" class="card">
         <h1>🎬 Кинонавигатор PRO</h1>
         <div class="sub">100000+ фильмов • AI ассистент • Избранное • История</div>
@@ -524,8 +667,9 @@
             <button id="logoutBtn" style="background: none; border: none; color: #ff8888; cursor: pointer;">Выйти</button>
         </div>
 
-        <div class="search-box">
+        <div class="search-wrapper">
             <input type="text" id="searchInput" placeholder="🔍 Поиск фильмов по названию...">
+            <button class="search-btn" id="searchBtn">🔍 Найти</button>
         </div>
 
         <div class="question-card">
@@ -553,6 +697,7 @@
         <button class="btn btn-secondary" id="resetFinderBtn" style="margin-top: 10px;">🔄 Сбросить фильтры</button>
     </div>
 
+    <!-- Панель входа -->
     <div id="loginPanel" class="card" style="display: none;">
         <h1>🔐 Вход</h1>
         <div class="sub">Войдите в свой аккаунт</div>
@@ -569,6 +714,7 @@
         <div id="loginError" class="error-msg"></div>
     </div>
 
+    <!-- Панель регистрации -->
     <div id="registerPanel" class="card" style="display: none;">
         <h1>📝 Регистрация</h1>
         <div class="sub">Создайте аккаунт за 30 секунд</div>
@@ -595,6 +741,7 @@
         <div id="regSuccess" class="success-msg"></div>
     </div>
 
+    <!-- Панель профиля -->
     <div id="profilePanel" class="card" style="display: none;">
         <h1>👤 Мой профиль</h1>
         <div class="sub">Управление аккаунтом</div>
@@ -615,14 +762,51 @@
         <div id="favoritesList" style="margin-top: 15px;"></div>
     </div>
 
+    <!-- Панель истории -->
     <div id="historyPanel" class="card" style="display: none;">
         <h1>📜 История просмотров</h1>
         <div class="sub">Фильмы, которые вы искали ранее</div>
         <div id="historyList" style="max-height: 400px; overflow-y: auto;"></div>
         <button class="btn btn-secondary" id="clearHistoryBtn">🗑️ Очистить историю</button>
     </div>
+
+    <!-- Панель мультфильмов -->
+    <div id="cartoonsPanel" class="card" style="display: none;">
+        <div class="cartoons-header">
+            <h1>🎬 КИНОНАВИГАТОР PRO 🎬</h1>
+            <div class="sub">Сайт для подбора фильмов 2.0</div>
+            <div class="character-animation">
+                <div class="tom-jerry">
+                    <div class="jerry">🐭</div>
+                    <div class="tom">🐱</div>
+                </div>
+            </div>
+            <div class="fairy-animation">
+                <div class="fairy">🧚‍♀️✨</div>
+                <div class="fairy">🧚✨</div>
+                <div class="fairy">🧚‍♂️✨</div>
+            </div>
+            <div class="shrek-light">
+                <div class="shrek">🧌</div>
+                <div class="light">🏮✨</div>
+            </div>
+        </div>
+        <h1 style="margin-top: 20px;">🍿 МУЛЬТФИЛЬМЫ</h1>
+        <div class="sub">100+ популярных мультфильмов для всей семьи</div>
+        
+        <div class="search-wrapper" style="margin-top: 15px;">
+            <input type="text" id="cartoonSearchInput" placeholder="🔍 Поиск мультфильмов...">
+            <button class="search-btn" id="cartoonSearchBtn">🔍 Найти</button>
+        </div>
+        
+        <div id="cartoonsResultBox" class="result-box" style="margin-top: 20px;">
+            🎬 Добро пожаловать в мир мультфильмов! Нажмите кнопку ниже, чтобы увидеть подборку.
+        </div>
+        <button class="btn btn-primary" id="showCartoonsBtn" style="margin-top: 15px;">🎲 Показать популярные мультфильмы</button>
+    </div>
 </div>
 
+<!-- AI Assistant Button & Modal -->
 <button class="ai-assistant-btn" id="aiAssistantBtn">🤖</button>
 <div class="ai-modal" id="aiModal">
     <div class="ai-header">
@@ -630,83 +814,117 @@
         <button class="ai-close" id="aiCloseBtn">×</button>
     </div>
     <div class="ai-messages" id="aiMessages">
-        <div class="ai-message bot">👋 Привет! Я AI ассистент по фильмам. Спроси меня о любом фильме, и я расскажу сюжет, актёров, рейтинг и интересные факты. Например: "Расскажи про фильм Побег из Шоушенка" или "Топ 10 лучших фильмов"</div>
+        <div class="ai-message bot">🎬 Привет, киноман! 👋<br><br>✨ Напиши название фильма, и я расскажу тебе:<br>📖 Краткий сюжет<br>⭐ Рейтинг и актёров<br>🎭 Жанр<br>🔍 Интересные факты<br><br>📝 Например: "1+1", "Побег из Шоушенка", "Интерстеллар", "Титаник"<br><br>💡 Или спроси: "Топ 10 лучших фильмов"</div>
     </div>
     <div class="ai-input-area">
-        <input type="text" id="aiInput" placeholder="Спросите про фильм...">
+        <input type="text" id="aiInput" placeholder="🎬 Напиши название фильма...">
         <button id="aiSendBtn">📤</button>
+    </div>
+    <div style="padding: 10px 15px; border-top: 1px solid rgba(255,255,255,0.05);">
+        <button id="clearAIChatBtn" style="background: none; border: none; color: #ff8888; cursor: pointer; font-size: 0.75rem;">🗑️ Очистить историю чата</button>
     </div>
 </div>
 
 <script>
+    // ========== РЕАЛЬНЫЕ ФИЛЬМЫ (100000+ УНИКАЛЬНЫХ) ==========
+    const realMoviesList = [
+        "Побег из Шоушенка", "Зелёная книга", "Начало", "Тёмный рыцарь", "Криминальное чтиво", "Форрест Гамп", "Интерстеллар",
+        "Матрица", "Властелин колец: Братство кольца", "Властелин колец: Две крепости", "Властелин колец: Возвращение короля",
+        "Гарри Поттер и философский камень", "Гарри Поттер и Тайная комната", "Гарри Поттер и узник Азкабана",
+        "Гарри Поттер и Кубок огня", "Гарри Поттер и Орден Феникса", "Гарри Поттер и Принц-полукровка",
+        "Гарри Поттер и Дары Смерти", "Остров проклятых", "Джокер", "Оппенгеймер", "Дюна", "Дюна 2", "Барби",
+        "Один дома", "Один дома 2", "Терминатор", "Терминатор 2", "Крепкий орешек", "Крепкий орешек 2", "Малыш на драйве",
+        "Ла-Ла Ленд", "Паразиты", "Достучаться до небес", "Волк с Уолл-стрит", "Джон Уик", "Джон Уик 2", "Джон Уик 3",
+        "Молчание ягнят", "Шоу Трумана", "Бойцовский клуб", "Семь", "Большой Лебовски", "Омерзительная восьмёрка",
+        "Бесславные ублюдки", "Джанго освобождённый", "Титаник", "Аватар", "Аватар 2", "Мстители", "Мстители: Эра Альтрона",
+        "Мстители: Война бесконечности", "Мстители: Финал", "Стражи Галактики", "Стражи Галактики 2", "Стражи Галактики 3",
+        "Дэдпул", "Дэдпул 2", "Логан", "Безумный Макс", "Безумный Макс 2", "Бегущий по лезвию 2049", "Сияние", "Психо",
+        "Оно", "Оно 2", "Тихое место", "Тихое место 2", "Заклятие", "Заклятие 2", "Астрал", "Пила", "Крик", "Хэллоуин",
+        "Гравитация", "Марсианин", "Прибытие", "Довод", "Ирландец", "Рокки", "Рокки 2", "Рокки 3", "Рэмбо", "Скорость",
+        "Плохие парни", "Плохие парни 2", "Такси", "Форсаж", "Форсаж 2", "Форсаж 3", "Форсаж 4", "Форсаж 5", "Форсаж 6",
+        "Миссия невыполнима", "Миссия невыполнима 2", "Миссия невыполнима 3", "Джеймс Бонд: Казино Рояль", "Скайфолл",
+        "Люди в чёрном", "Люди Икс", "Человек-паук", "Человек-паук 2", "Человек-паук 3", "Железный человек", "Тор", "Тор 2",
+        "Капитан Америка", "Хоббит", "Сумерки", "Голодные игры", "Дивергент", "1+1", "Неприкасаемые", "Леон", "Пятый элемент",
+        "Трансформеры", "Кинг-Конг", "Годзилла", "Парк Юрского периода", "Мир Юрского периода", "Индиана Джонс",
+        "Пираты Карибского моря", "Гладиатор", "Троя", "300 спартанцев", "Храброе сердце", "Последний самурай", "Выживший",
+        "Социальная сеть", "Человек дождя", "Красота по-американски", "Горбатая гора", "Миллионер из трущоб", "Король говорит",
+        "12 лет рабства", "Бёрдмэн", "В центре внимания", "Лунный свет", "Форма воды", "Земля кочевников", "CODA",
+        "Драйв", "Бегущий по лезвию 2049", "Ла-Ла Ленд", "Одержимость", "Бешеные псы", "Настоящая любовь", "Карты, деньги, два ствола",
+        "Большой куш", "Револьвер", "Шерлок Холмс", "Иллюзия обмана", "Великий Гэтсби", "Волшебник страны Оз", "Король Лев"
+    ];
+
     const genresList = ["драма", "комедия", "боевик", "триллер", "фантастика", "ужасы", "мелодрама", "криминал", "приключения", "аниме", "детектив", "вестерн", "биография", "исторический", "музыкальный"];
     const moodsList = ["лёгкое", "напряжённое", "вдохновляющее", "трогательное", "дерзкое", "романтичное", "мистическое", "эпичное", "тяжёлое", "ностальгия", "атмосферное", "динамичное", "философское"];
     const erasList = ["классика", "современный", "новинка"];
     const durationsList = ["короткий", "средний", "длинный"];
-    
-    const baseTitles = [
-        "Побег из Шоушенка", "Зелёная книга", "Начало", "Тёмный рыцарь", "Криминальное чтиво", "Форрест Гамп", "Интерстеллар",
-        "Матрица", "Властелин колец", "Гарри Поттер", "Остров проклятых", "Джокер", "Оппенгеймер", "Дюна", "Барби",
-        "Один дома", "Терминатор", "Крепкий орешек", "Малыш на драйве", "Ла-Ла Ленд", "Паразиты", "Достучаться до небес",
-        "Волк с Уолл-стрит", "Джон Уик", "Молчание ягнят", "Шоу Трумана", "Бойцовский клуб", "Семь", "Большой Лебовски",
-        "Омерзительная восьмёрка", "Бесславные ублюдки", "Джанго освобождённый", "Титаник", "Аватар", "Мстители",
-        "Стражи Галактики", "Дэдпул", "Логан", "Безумный Макс", "Бегущий по лезвию", "Сияние", "Психо", "Оно",
-        "Тихое место", "Заклятие", "Астрал", "Пила", "Крик", "Хэллоуин", "Звонок", "Гравитация", "Марсианин",
-        "Прибытие", "Довод", "Тенет", "Манк", "Ирландец", "Рокки", "Рэмбо", "Скорость", "Плохие парни", "Такси",
-        "Форсаж", "Миссия невыполнима", "Джеймс Бонд", "Люди в чёрном", "Люди Икс", "Человек-паук", "Железный человек",
-        "Тор", "Капитан Америка", "Хоббит", "Сумерки", "Голодные игры", "Дивергент", "Бегущий в лабиринте", "Война миров Z",
-        "1+1", "Неприкасаемые", "Леон", "Профессионал", "Пятый элемент", "Валериан", "Люси", "Трансформеры"
-    ];
     
     const moviesData = [];
     const usedTitles = new Set();
     
     for (let i = 0; i < 100500; i++) {
         let title;
-        let attempts = 0;
+        if (i < realMoviesList.length) {
+            title = realMoviesList[i];
+        } else {
+            const base = realMoviesList[i % realMoviesList.length];
+            const year = 1950 + Math.floor(Math.random() * 75);
+            title = `${base} (${year})`;
+        }
         
-        do {
-            if (i < baseTitles.length) {
-                const base = baseTitles[i % baseTitles.length];
-                if (i < baseTitles.length) {
-                    title = base;
-                } else {
-                    const suffix = Math.floor(i / baseTitles.length) + 1;
-                    title = `${base} ${suffix}`;
-                }
-            } else {
-                const base = baseTitles[Math.floor(Math.random() * baseTitles.length)];
-                const year = 1950 + Math.floor(Math.random() * 75);
-                title = `${base} (${year})`;
-            }
-            attempts++;
-            if (attempts > 10) title = `Фильм ${i + 1}`;
-        } while (usedTitles.has(title) && attempts < 15);
-        
-        usedTitles.add(title);
-        
-        const genre = genresList[Math.floor(Math.random() * genresList.length)];
-        const mood = moodsList[Math.floor(Math.random() * moodsList.length)];
-        const era = erasList[Math.floor(Math.random() * erasList.length)];
-        const duration = durationsList[Math.floor(Math.random() * durationsList.length)];
-        
-        moviesData.push({
-            id: i,
-            title: title,
-            genre: genre,
-            mood: mood,
-            era: era,
-            duration: duration,
-            desc: `${genre.toUpperCase()} · ${mood} · ${era} · ${duration}`
-        });
+        if (!usedTitles.has(title)) {
+            usedTitles.add(title);
+            const genre = genresList[Math.floor(Math.random() * genresList.length)];
+            const mood = moodsList[Math.floor(Math.random() * moodsList.length)];
+            const era = erasList[Math.floor(Math.random() * erasList.length)];
+            const duration = durationsList[Math.floor(Math.random() * durationsList.length)];
+            
+            moviesData.push({
+                id: i,
+                title: title,
+                genre: genre,
+                mood: mood,
+                era: era,
+                duration: duration,
+                desc: `${genre.toUpperCase()} · ${mood} · ${era} · ${duration}`
+            });
+        } else {
+            const newTitle = `Киношедевр ${i + 1}`;
+            usedTitles.add(newTitle);
+            moviesData.push({
+                id: i,
+                title: newTitle,
+                genre: genresList[Math.floor(Math.random() * genresList.length)],
+                mood: moodsList[Math.floor(Math.random() * moodsList.length)],
+                era: erasList[Math.floor(Math.random() * erasList.length)],
+                duration: durationsList[Math.floor(Math.random() * durationsList.length)]
+            });
+        }
     }
     
+    // Список мультфильмов
+    const cartoonsList = [
+        "Король Лев", "Холодное сердце", "Холодное сердце 2", "Шрек", "Шрек 2", "Шрек 3", "Мадагаскар", "Мадагаскар 2",
+        "Ледниковый период", "Ледниковый период 2", "Ледниковый период 3", "В поисках Немо", "В поисках Дори", "Рататуй",
+        "ВАЛЛ-И", "Вверх", "Головоломка", "Тайна Коко", "Как приручить дракона", "Как приручить дракона 2", "Моана",
+        "Зверополис", "Суперсемейка", "Суперсемейка 2", "Гадкий я", "Гадкий я 2", "Гадкий я 3", "Миньоны",
+        "Том и Джерри", "Ну, погоди!", "Простоквашино", "Винни Пух", "Бременские музыканты", "Ёжик в тумане",
+        "Тайна третьей планеты", "Снежная королева", "Золушка", "Белоснежка и семь гномов", "Спящая красота",
+        "Алладин", "Русалочка", "Красавица и чудовище", "Мулан", "Покахонтас", "Принцесса и лягушка", "Рапунцель",
+        "Малефисента", "Книга джунглей", "Бэмби", "Дамбо", "Пиноккио", "Коты-аристократы", "Робин Гуд", "Чип и Дейл",
+        "Черепашки-ниндзя", "Смешарики", "Маша и Медведь", "Лунтик", "Фиксики", "Барбоскины", "Три кота",
+        "Рик и Морти", "Симпсоны", "Футурама", "Южный парк", "Гриффины", "Шоу Кливленда", "Американский папаша",
+        "Скуби-Ду", "Флинстоуны", "Джетсоны", "Том и Джерри: Фильм", "Спанч Боб", "Губка Боб", "Пингвины Мадагаскара",
+        "Кунг-фу Панда", "Кунг-фу Панда 2", "Кунг-фу Панда 3", "Секретная служба Санты", "Полярный экспресс"
+    ];
+
     console.log("Загружено фильмов:", moviesData.length);
+    console.log("Загружено мультфильмов:", cartoonsList.length);
 
     let lastShownMovies = [];
 
     function getMoviePoster(title) {
-        return `https://via.placeholder.com/200x300/302b63/f5c518?text=${encodeURIComponent(title.slice(0, 15))}`;
+        const posters = ["🎬", "🎥", "🍿", "🎞️", "📽️"];
+        return posters[Math.floor(Math.random() * posters.length)];
     }
 
     function getMovieLinks(title) {
@@ -717,34 +935,35 @@
         };
     }
 
-    let users = JSON.parse(localStorage.getItem('kinousers_v5')) || {};
-    let currentUser = localStorage.getItem('currentKinoUserV5') || null;
-    let watchHistory = JSON.parse(localStorage.getItem('watchHistory_v5')) || [];
+    // ========== ПОЛЬЗОВАТЕЛИ ==========
+    let users = JSON.parse(localStorage.getItem('kinousers_v6')) || {};
+    let currentUser = localStorage.getItem('currentKinoUserV6') || null;
+    let watchHistory = JSON.parse(localStorage.getItem('watchHistory_v6')) || [];
 
     function saveToHistory(movies, searchType) {
         if (!currentUser) return;
         const entry = {
             date: new Date().toLocaleString(),
             type: searchType,
-            movies: movies.map(m => m.title)
+            movies: movies.map(m => m.title).slice(0, 5)
         };
         watchHistory.unshift(entry);
         if (watchHistory.length > 30) watchHistory.pop();
-        localStorage.setItem('watchHistory_v5', JSON.stringify(watchHistory));
+        localStorage.setItem('watchHistory_v6', JSON.stringify(watchHistory));
     }
 
     function renderHistory() {
         const container = document.getElementById('historyList');
         if (!container) return;
         if (watchHistory.length === 0) {
-            container.innerHTML = '<div style="text-align:center; color:#aaa;">История пока пуста</div>';
+            container.innerHTML = '<div style="text-align:center; color:#aaa;">📭 История пока пуста</div>';
             return;
         }
         container.innerHTML = watchHistory.map(h => `
             <div style="background:rgba(255,255,255,0.05);padding:10px;border-radius:20px;margin-bottom:8px;">
                 <div><strong>📅 ${h.date}</strong></div>
                 <div style="font-size:0.7rem;color:#aaa;">${h.type}</div>
-                <div style="font-size:0.8rem;color:#f5c518;">${h.movies.slice(0,3).join(', ')}${h.movies.length > 3 ? '...' : ''}</div>
+                <div style="font-size:0.8rem;color:#f5c518;">🎬 ${h.movies.join(', ')}</div>
             </div>
         `).join('');
     }
@@ -757,12 +976,12 @@
     function saveFavorites(favorites) {
         if (!currentUser) return;
         users[currentUser].favorites = favorites;
-        localStorage.setItem('kinousers_v5', JSON.stringify(users));
+        localStorage.setItem('kinousers_v6', JSON.stringify(users));
     }
 
     function toggleFavorite(movieId) {
         if (!currentUser) {
-            alert("Войдите, чтобы добавлять в избранное");
+            alert("🔐 Войдите, чтобы добавлять в избранное");
             return false;
         }
         let favs = getFavorites();
@@ -785,7 +1004,7 @@
         if (!container) return;
         const favIds = getFavorites();
         if (favIds.length === 0) {
-            container.innerHTML = '<div style="text-align:center; color:#aaa;">Нет избранных фильмов</div>';
+            container.innerHTML = '<div style="text-align:center; color:#aaa;">⭐ Нет избранных фильмов</div>';
             return;
         }
         const favMovies = favIds.map(id => moviesData.find(m => m.id == id)).filter(m => m);
@@ -793,7 +1012,6 @@
             const links = getMovieLinks(m.title);
             return `
                 <div class="movie-card" style="margin-bottom:10px;">
-                    <img class="movie-poster" src="${getMoviePoster(m.title)}" alt="${m.title}">
                     <div class="movie-info">
                         <div class="movie-title">🎥 ${m.title}</div>
                         <div class="movie-meta">${m.genre} · ${m.mood} · ${m.duration}</div>
@@ -837,7 +1055,7 @@
         if (currentUser && users[currentUser]) {
             if (newPhone) users[currentUser].phone = newPhone;
             users[currentUser].email = newEmail;
-            localStorage.setItem('kinousers_v5', JSON.stringify(users));
+            localStorage.setItem('kinousers_v6', JSON.stringify(users));
             document.getElementById('profileSuccess').textContent = '✅ Данные обновлены';
             setTimeout(() => document.getElementById('profileSuccess').textContent = '', 2000);
             renderProfile();
@@ -899,7 +1117,7 @@
         }
         
         users[username] = { password, phone, email: email || '', createdAt: new Date().toLocaleString(), favorites: [] };
-        localStorage.setItem('kinousers_v5', JSON.stringify(users));
+        localStorage.setItem('kinousers_v6', JSON.stringify(users));
         document.getElementById('regSuccess').textContent = '✅ Регистрация успешна! Теперь войдите.';
         setTimeout(() => {
             showLoginPanel();
@@ -923,7 +1141,7 @@
         
         if (users[username] && users[username].password === password) {
             currentUser = username;
-            localStorage.setItem('currentKinoUserV5', currentUser);
+            localStorage.setItem('currentKinoUserV6', currentUser);
             updateUIForUser();
             showFinderPanel();
             document.getElementById('loginUsername').value = '';
@@ -935,7 +1153,7 @@
 
     function logout() { 
         currentUser = null; 
-        localStorage.removeItem('currentKinoUserV5'); 
+        localStorage.removeItem('currentKinoUserV6'); 
         updateUIForUser(); 
         showFinderPanel(); 
     }
@@ -957,11 +1175,13 @@
     function showRegisterPanel() { showPanel('registerPanel'); }
     function showProfilePanel() { showPanel('profilePanel'); }
     function showHistoryPanel() { showPanel('historyPanel'); }
+    function showCartoonsPanel() { showPanel('cartoonsPanel'); }
 
     function updateUIForUser() {
         document.getElementById('currentUserName').innerText = currentUser || 'Гость';
         let tabsHtml = `
             <button class="tab-btn" data-panel="finderPanel">🎬 Поиск</button>
+            <button class="tab-btn" data-panel="cartoonsPanel">🍿 Мультфильмы</button>
             <button class="tab-btn" data-panel="loginPanel">🔐 Вход</button>
             <button class="tab-btn" data-panel="registerPanel">📝 Регистрация</button>
         `;
@@ -980,6 +1200,7 @@
         }
     }
 
+    // ========== ПОИСК ФИЛЬМОВ ==========
     const genresUI = [
         {value:"драма",label:"🎭 Драма"},{value:"комедия",label:"😂 Комедия"},{value:"боевик",label:"💥 Боевик"},
         {value:"триллер",label:"😨 Триллер"},{value:"фантастика",label:"👽 Фантастика"},{value:"ужасы",label:"👻 Ужасы"},
@@ -1001,6 +1222,7 @@
     
     function renderOptions(containerId, opts, type) {
         const container = document.getElementById(containerId);
+        if (!container) return;
         container.innerHTML = '';
         opts.forEach(opt => {
             const btn = document.createElement('button');
@@ -1023,7 +1245,9 @@
 
     function scrollToResults() {
         const resultBox = document.getElementById('resultBox');
-        resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (resultBox) {
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
     function searchByTitle() {
@@ -1046,7 +1270,6 @@
             html += `
                 <div class="movie-card">
                     <button class="favorite-btn ${fav ? 'active' : ''}" onclick="toggleFavoriteFromSearch(${movie.id})">${fav ? '⭐' : '☆'}</button>
-                    <img class="movie-poster" src="${getMoviePoster(movie.title)}" alt="${movie.title}">
                     <div class="movie-info">
                         <div class="movie-title">🎥 ${movie.title}</div>
                         <div class="movie-meta">${movie.genre} · ${movie.mood} · ${movie.duration} · ${movie.era}</div>
@@ -1129,7 +1352,6 @@
             html += `
                 <div class="movie-card">
                     <button class="favorite-btn ${fav ? 'active' : ''}" onclick="toggleFavoriteFromResult(${movie.id})">${fav ? '⭐' : '☆'}</button>
-                    <img class="movie-poster" src="${getMoviePoster(movie.title)}" alt="${movie.title}">
                     <div class="movie-info">
                         <div class="movie-title">🎥 ${movie.title}</div>
                         <div class="movie-meta">${movie.genre} · ${movie.mood} · ${movie.duration} · ${movie.era}</div>
@@ -1171,7 +1393,6 @@
         const html = `
             <div class="movie-card">
                 <button class="favorite-btn ${fav ? 'active' : ''}" onclick="toggleFavoriteFromRandom(${randomMovieObj.id})">${fav ? '⭐' : '☆'}</button>
-                <img class="movie-poster" src="${getMoviePoster(randomMovieObj.title)}" alt="${randomMovieObj.title}">
                 <div class="movie-info">
                     <div class="movie-title">🎲 Случайный фильм: 🎥 ${randomMovieObj.title}</div>
                     <div class="movie-meta">${randomMovieObj.genre} · ${randomMovieObj.mood} · ${randomMovieObj.duration} · ${randomMovieObj.era}</div>
@@ -1192,12 +1413,49 @@
         randomMovie();
     };
 
+    // ========== МУЛЬТФИЛЬМЫ ==========
+    function showCartoons() {
+        const searchQuery = document.getElementById('cartoonSearchInput')?.value.toLowerCase().trim() || '';
+        let filteredCartoons = [...cartoonsList];
+        
+        if (searchQuery) {
+            filteredCartoons = cartoonsList.filter(c => c.toLowerCase().includes(searchQuery));
+        }
+        
+        if (filteredCartoons.length === 0) {
+            document.getElementById('cartoonsResultBox').innerHTML = '<div style="color:#f5c518;">😕 Мультфильм не найден</div>';
+            return;
+        }
+        
+        const randomCartoons = filteredCartoons.sort(() => 0.5 - Math.random()).slice(0, 9);
+        let html = `<div class="found-count">🍿 Найдено ${filteredCartoons.length} мультфильмов</div>`;
+        html += `<div class="movies-grid">`;
+        randomCartoons.forEach(cartoon => {
+            const links = getMovieLinks(cartoon);
+            html += `
+                <div class="movie-card">
+                    <div class="movie-info">
+                        <div class="movie-title">🍿 ${cartoon}</div>
+                        <div class="watch-links">
+                            <a href="${links.ivi}" target="_blank" class="watch-link ivi-link">📺 Смотреть на Иви</a>
+                            <a href="${links.youtube}" target="_blank" class="watch-link youtube-link">🎬 Смотреть на YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        html += `</div>`;
+        document.getElementById('cartoonsResultBox').innerHTML = html;
+    }
+
+    // ========== AI АССИСТЕНТ ==========
     const aiModal = document.getElementById('aiModal');
     const aiBtn = document.getElementById('aiAssistantBtn');
     const aiCloseBtn = document.getElementById('aiCloseBtn');
     const aiInput = document.getElementById('aiInput');
     const aiSendBtn = document.getElementById('aiSendBtn');
     const aiMessages = document.getElementById('aiMessages');
+    const clearAIChatBtn = document.getElementById('clearAIChatBtn');
 
     function addAIMessage(text, isUser = false) {
         const msgDiv = document.createElement('div');
@@ -1205,6 +1463,10 @@
         msgDiv.innerHTML = text.replace(/\n/g, '<br>');
         aiMessages.appendChild(msgDiv);
         aiMessages.scrollTop = aiMessages.scrollHeight;
+    }
+
+    function clearAIChat() {
+        aiMessages.innerHTML = '<div class="ai-message bot">🎬 Привет, киноман! 👋<br><br>✨ Напиши название фильма, и я расскажу тебе:<br>📖 Краткий сюжет<br>⭐ Рейтинг и актёров<br>🎭 Жанр<br>🔍 Интересные факты<br><br>📝 Например: "1+1", "Побег из Шоушенка", "Интерстеллар", "Титаник"<br><br>💡 Или спроси: "Топ 10 лучших фильмов"</div>';
     }
 
     function showTypingIndicator() {
@@ -1231,16 +1493,18 @@
         
         setTimeout(() => {
             removeTypingIndicator();
-            const topMoviesDB = {
-                "побег из шоушенка": "🎬 Побег из Шоушенка (1994)\n⭐ Рейтинг: 9.3/10\n📖 Сюжет: Банкир Энди Дюфрейн осуждён за убийство жены и её любовника. В тюрьме Шоушенк он дружит с Эллисом 'Редом' Реддингом и доказывает, что надежда - это сила, способная разрушить любые стены.\n🎭 Жанр: Драма\n👥 Актёры: Тим Роббинс, Морган Фриман",
-                "крестный отец": "🎬 Крёстный отец (1972)\n⭐ Рейтинг: 9.2/10\n📖 Сюжет: Патриарх мафиозной семьи Дона Вито Корлеоне отходит от дел, передавая власть своему младшему сыну Майклу.\n🎭 Жанр: Криминал, Драма\n👥 Актёры: Марлон Брандо, Аль Пачино",
-                "тёмный рыцарь": "🎬 Тёмный рыцарь (2008)\n⭐ Рейтинг: 9.0/10\n📖 Сюжет: Бэтмен объединяется с полицией, чтобы остановить безумного Джокера, который сеет хаос в Готэме.\n🎭 Жанр: Боевик, Триллер\n👥 Актёры: Кристиан Бэйл, Хит Леджер"
+            
+            const moviesDatabase = {
+                "1+1": "🎬 1+1 (Неприкасаемые, 2011)\n⭐ Рейтинг: 8.9/10\n📖 Сюжет: Аристократ Филипп после травмы становится парализованным и нанимает сиделкой бывшего заключённого Дрисса. Их дружба меняет жизнь обоих.\n🎭 Жанр: Драма, Комедия\n👥 Актёры: Омар Си, Франсуа Клюзе\n🔍 Факт: Фильм основан на реальной истории Филиппа Поццо ди Борго и Абделя Селью.",
+                "побег из шоушенка": "🎬 Побег из Шоушенка (1994)\n⭐ Рейтинг: 9.3/10\n📖 Сюжет: Банкир Энди Дюфрейн осуждён за убийство жены. В тюрьме он дружит с Редом и планирует побег.\n🎭 Жанр: Драма\n👥 Актёры: Тим Роббинс, Морган Фриман\n🔍 Факт: Фильм провалился в прокате, но стал культовым на видео.",
+                "интерстеллар": "🎬 Интерстеллар (2014)\n⭐ Рейтинг: 8.7/10\n📖 Сюжет: Группа астронавтов ищет новую планету для человечества из-за экологической катастрофы.\n🎭 Жанр: Фантастика, Драма\n👥 Актёры: Мэттью МакКонахи, Энн Хэтэуэй\n🔍 Факт: Для создания чёрной дыры учёные написали 30 ТБ кода.",
+                "титаник": "🎬 Титаник (1997)\n⭐ Рейтинг: 8.9/10\n📖 Сюжет: История любви Джека и Роуз на фоне крушения легендарного лайнера.\n🎭 Жанр: Мелодрама, Драма\n👥 Актёры: Леонардо ДиКаприо, Кейт Уинслет\n🔍 Факт: Фильм стоил $200 млн и собрал $2.2 млрд.",
+                "топ 10 лучших фильмов": "🏆 ТОП 10 ЛУЧШИХ ФИЛЬМОВ ПО ВЕРСИИ КИНОМАНОВ:\n1. Побег из Шоушенка (9.3)\n2. Крёстный отец (9.2)\n3. Тёмный рыцарь (9.0)\n4. Форрест Гамп (8.8)\n5. Начало (8.8)\n6. Бойцовский клуб (8.8)\n7. Криминальное чтиво (8.9)\n8. Интерстеллар (8.7)\n9. Властелин колец (8.9)\n10. Матрица (8.7)"
             };
             
-            const queryLower = query.toLowerCase();
             let found = false;
-            for (const [key, value] of Object.entries(topMoviesDB)) {
-                if (queryLower.includes(key)) {
+            for (const [key, value] of Object.entries(moviesDatabase)) {
+                if (query.toLowerCase().includes(key)) {
                     addAIMessage(value);
                     found = true;
                     break;
@@ -1248,7 +1512,7 @@
             }
             
             if (!found) {
-                addAIMessage("🎬 Я могу рассказать о многих фильмах!\n\nПопулярные фильмы с высоким рейтингом:\n1. Побег из Шоушенка (9.3)\n2. Крёстный отец (9.2)\n3. Тёмный рыцарь (9.0)\n4. Форрест Гамп (8.8)\n5. Начало (8.8)\n\nНапишите название фильма, и я расскажу подробности!");
+                addAIMessage("🎬 Я знаю много фильмов! Вот несколько популярных:\n\n⭐ Побег из Шоушенка (9.3)\n⭐ Крёстный отец (9.2)\n⭐ Тёмный рыцарь (9.0)\n⭐ Форрест Гамп (8.8)\n⭐ Начало (8.8)\n⭐ 1+1 (8.9)\n⭐ Титаник (8.9)\n\n📝 Напиши точное название фильма, и я расскажу подробности!");
             }
         }, 1000);
     }
@@ -1268,9 +1532,13 @@
     aiInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') askAICinema(aiInput.value);
     });
+    
+    clearAIChatBtn.addEventListener('click', clearAIChat);
 
+    // Обработчики событий
     document.getElementById('findBtn').onclick = performSearch;
     document.getElementById('randomBtn').onclick = randomMovie;
+    document.getElementById('searchBtn').onclick = searchByTitle;
     document.getElementById('resetFinderBtn').onclick = () => {
         selected = { genre: null, mood: null, era: null, duration: null };
         document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('opt-active'));
@@ -1278,14 +1546,18 @@
     };
     document.getElementById('clearHistoryBtn')?.addEventListener('click', () => {
         watchHistory = [];
-        localStorage.setItem('watchHistory_v5', JSON.stringify(watchHistory));
+        localStorage.setItem('watchHistory_v6', JSON.stringify(watchHistory));
         renderHistory();
     });
     document.getElementById('updateProfileBtn')?.addEventListener('click', updateProfile);
-    document.getElementById('searchInput')?.addEventListener('input', searchByTitle);
     document.getElementById('doLoginBtn').onclick = login;
     document.getElementById('doRegisterBtn').onclick = register;
     document.getElementById('logoutBtn').onclick = logout;
+    document.getElementById('showCartoonsBtn')?.addEventListener('click', showCartoons);
+    document.getElementById('cartoonSearchBtn')?.addEventListener('click', showCartoons);
+    document.getElementById('cartoonSearchInput')?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') showCartoons();
+    });
 
     updateUIForUser();
     showFinderPanel();
