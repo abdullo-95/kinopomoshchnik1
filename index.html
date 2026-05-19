@@ -99,10 +99,6 @@
             outline: none;
         }
 
-        .input-group input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
         .password-wrapper {
             position: relative;
         }
@@ -347,7 +343,6 @@
             margin-top: 10px;
         }
 
-        /* AI Assistant Button */
         .ai-assistant-btn {
             position: fixed;
             bottom: 30px;
@@ -371,7 +366,6 @@
             transform: scale(1.1);
         }
 
-        /* AI Modal */
         .ai-modal {
             position: fixed;
             bottom: 100px;
@@ -521,7 +515,6 @@
 <div class="container">
     <div class="tabs" id="tabs"></div>
 
-    <!-- Панель поиска фильмов -->
     <div id="finderPanel" class="card">
         <h1>🎬 Кинонавигатор PRO</h1>
         <div class="sub">100000+ фильмов • AI ассистент • Избранное • История</div>
@@ -560,7 +553,6 @@
         <button class="btn btn-secondary" id="resetFinderBtn" style="margin-top: 10px;">🔄 Сбросить фильтры</button>
     </div>
 
-    <!-- Панель входа -->
     <div id="loginPanel" class="card" style="display: none;">
         <h1>🔐 Вход</h1>
         <div class="sub">Войдите в свой аккаунт</div>
@@ -577,7 +569,6 @@
         <div id="loginError" class="error-msg"></div>
     </div>
 
-    <!-- Панель регистрации -->
     <div id="registerPanel" class="card" style="display: none;">
         <h1>📝 Регистрация</h1>
         <div class="sub">Создайте аккаунт за 30 секунд</div>
@@ -604,7 +595,6 @@
         <div id="regSuccess" class="success-msg"></div>
     </div>
 
-    <!-- Панель профиля -->
     <div id="profilePanel" class="card" style="display: none;">
         <h1>👤 Мой профиль</h1>
         <div class="sub">Управление аккаунтом</div>
@@ -625,7 +615,6 @@
         <div id="favoritesList" style="margin-top: 15px;"></div>
     </div>
 
-    <!-- Панель истории -->
     <div id="historyPanel" class="card" style="display: none;">
         <h1>📜 История просмотров</h1>
         <div class="sub">Фильмы, которые вы искали ранее</div>
@@ -634,7 +623,6 @@
     </div>
 </div>
 
-<!-- AI Assistant Button & Modal -->
 <button class="ai-assistant-btn" id="aiAssistantBtn">🤖</button>
 <div class="ai-modal" id="aiModal">
     <div class="ai-header">
@@ -651,13 +639,11 @@
 </div>
 
 <script>
-    // ========== ГЕНЕРАЦИЯ 100000+ УНИКАЛЬНЫХ ФИЛЬМОВ ==========
     const genresList = ["драма", "комедия", "боевик", "триллер", "фантастика", "ужасы", "мелодрама", "криминал", "приключения", "аниме", "детектив", "вестерн", "биография", "исторический", "музыкальный"];
     const moodsList = ["лёгкое", "напряжённое", "вдохновляющее", "трогательное", "дерзкое", "романтичное", "мистическое", "эпичное", "тяжёлое", "ностальгия", "атмосферное", "динамичное", "философское"];
     const erasList = ["классика", "современный", "новинка"];
     const durationsList = ["короткий", "средний", "длинный"];
     
-    // Расширенный список уникальных названий (1000+ базовых)
     const baseTitles = [
         "Побег из Шоушенка", "Зелёная книга", "Начало", "Тёмный рыцарь", "Криминальное чтиво", "Форрест Гамп", "Интерстеллар",
         "Матрица", "Властелин колец", "Гарри Поттер", "Остров проклятых", "Джокер", "Оппенгеймер", "Дюна", "Барби",
@@ -669,19 +655,12 @@
         "Прибытие", "Довод", "Тенет", "Манк", "Ирландец", "Рокки", "Рэмбо", "Скорость", "Плохие парни", "Такси",
         "Форсаж", "Миссия невыполнима", "Джеймс Бонд", "Люди в чёрном", "Люди Икс", "Человек-паук", "Железный человек",
         "Тор", "Капитан Америка", "Хоббит", "Сумерки", "Голодные игры", "Дивергент", "Бегущий в лабиринте", "Война миров Z",
-        "1+1", "Неприкасаемые", "Леон", "Профессионал", "Пятый элемент", "Валериан", "Люси", "Трансформеры",
-        "Кинг-Конг", "Годзилла", "Парк Юрского периода", "Мир Юрского периода", "Индиана Джонс", "Пираты Карибского моря",
-        "Гладиатор", "Троя", "Александр", "300 спартанцев", "Храброе сердце", "Последний самурай", "Выживший",
-        "Социальная сеть", "Человек дождя", "Красота по-американски", "Горбатая гора", "Миллионер из трущоб",
-        "Король говорит", "Артист", "12 лет рабства", "Бёрдмэн", "В центре внимания", "Лунный свет", "Форма воды",
-        "Зелёная книга", "Паразиты", "Земля кочевников", "CODA: Ребёнок глухих родителей"
+        "1+1", "Неприкасаемые", "Леон", "Профессионал", "Пятый элемент", "Валериан", "Люси", "Трансформеры"
     ];
     
-    // Генерация 100000+ уникальных фильмов
     const moviesData = [];
     const usedTitles = new Set();
     
-    // Добавляем базовые названия с уникальными комбинациями
     for (let i = 0; i < 100500; i++) {
         let title;
         let attempts = 0;
@@ -718,15 +697,12 @@
             mood: mood,
             era: era,
             duration: duration,
-            desc: `${genre.toUpperCase()} · ${mood} · ${era} · ${duration}`,
-            poster: `https://image.tmdb.org/t/p/w200${Math.floor(Math.random() * 30)}.jpg`
+            desc: `${genre.toUpperCase()} · ${mood} · ${era} · ${duration}`
         });
     }
     
     console.log("Загружено фильмов:", moviesData.length);
-    console.log("Уникальных названий:", usedTitles.size);
 
-    // Хранилище последних показанных фильмов для предотвращения повторов
     let lastShownMovies = [];
 
     function getMoviePoster(title) {
@@ -741,10 +717,8 @@
         };
     }
 
-    // ========== ПОЛЬЗОВАТЕЛИ ==========
     let users = JSON.parse(localStorage.getItem('kinousers_v5')) || {};
     let currentUser = localStorage.getItem('currentKinoUserV5') || null;
-    
     let watchHistory = JSON.parse(localStorage.getItem('watchHistory_v5')) || [];
 
     function saveToHistory(movies, searchType) {
@@ -1006,7 +980,6 @@
         }
     }
 
-    // ========== ПОИСК ФИЛЬМОВ ==========
     const genresUI = [
         {value:"драма",label:"🎭 Драма"},{value:"комедия",label:"😂 Комедия"},{value:"боевик",label:"💥 Боевик"},
         {value:"триллер",label:"😨 Триллер"},{value:"фантастика",label:"👽 Фантастика"},{value:"ужасы",label:"👻 Ужасы"},
@@ -1219,7 +1192,6 @@
         randomMovie();
     };
 
-    // ========== AI АССИСТЕНТ С РЕАЛЬНЫМИ ДАННЫМИ ==========
     const aiModal = document.getElementById('aiModal');
     const aiBtn = document.getElementById('aiAssistantBtn');
     const aiCloseBtn = document.getElementById('aiCloseBtn');
@@ -1257,37 +1229,18 @@
         
         showTypingIndicator();
         
-        try {
-            // Используем бесплатный API для получения информации о фильмах
-            const searchQuery = encodeURIComponent(query);
-            const response = await fetch(`https://www.omdbapi.com/?apikey=8f38d9e1&t=${searchQuery}&plot=full`);
-            
-            if (response.ok) {
-                const data = await response.json();
-                if (data.Response === "True") {
-                    const rating = data.imdbRating;
-                    const stars = rating >= 8.0 ? '⭐'.repeat(Math.floor(rating)) : '';
-                    const answer = `🎬 **${data.Title}** (${data.Year})\n\n📖 **Сюжет:** ${data.Plot}\n\n⭐ **Рейтинг IMDB:** ${rating}/10 ${stars}\n\n🎭 **Жанр:** ${data.Genre}\n\n🎬 **Режиссёр:** ${data.Director}\n\n👥 **Актёры:** ${data.Actors}\n\n💰 **Бюджет:** ${data.BoxOffice || 'не указан'}\n\n🏆 **Награды:** ${data.Awards || 'нет информации'}`;
-                    removeTypingIndicator();
-                    addAIMessage(answer);
-                    return;
-                }
-            }
-            
-            // Fallback: локальная база популярных фильмов с высоким рейтингом
+        setTimeout(() => {
+            removeTypingIndicator();
             const topMoviesDB = {
-                "побег из шоушенка": "Побег из Шоушенка (1994) - Рейтинг: 9.3/10. Сюжет: Банкир Энди Дюфрейн осуждён за убийство жены и её любовника. В тюрьме Шоушенк он дружит с Эллисом 'Редом' Реддингом и доказывает, что надежда - это сила, способная разрушить любые стены.",
-                "крестный отец": "Крёстный отец (1972) - Рейтинг: 9.2/10. Сюжет: Патриарх мафиозной семьи Дона Вито Корлеоне отходит от дел, передавая власть своему младшему сыну Майклу.",
-                "тёмный рыцарь": "Тёмный рыцарь (2008) - Рейтинг: 9.0/10. Сюжет: Бэтмен, лейтенант Джим Гордон и прокурор Харви Дент объединяются, чтобы искоренить преступность в Готэме, но на пути встаёт безумный гений Джокер.",
-                "форрест гамп": "Форрест Гамп (1994) - Рейтинг: 8.8/10. Сюжет: Парень с низким IQ становится свидетелем важнейших событий XX века и доказывает, что любовь и верность превыше всего.",
-                "начало": "Начало (2010) - Рейтинг: 8.8/10. Сюжет: Профессиональный вор Кобб внедряется в сны людей, чтобы украсть секреты. Ему предлагают стереть долг за внедрение идеи в подсознание наследника корпорации."
+                "побег из шоушенка": "🎬 Побег из Шоушенка (1994)\n⭐ Рейтинг: 9.3/10\n📖 Сюжет: Банкир Энди Дюфрейн осуждён за убийство жены и её любовника. В тюрьме Шоушенк он дружит с Эллисом 'Редом' Реддингом и доказывает, что надежда - это сила, способная разрушить любые стены.\n🎭 Жанр: Драма\n👥 Актёры: Тим Роббинс, Морган Фриман",
+                "крестный отец": "🎬 Крёстный отец (1972)\n⭐ Рейтинг: 9.2/10\n📖 Сюжет: Патриарх мафиозной семьи Дона Вито Корлеоне отходит от дел, передавая власть своему младшему сыну Майклу.\n🎭 Жанр: Криминал, Драма\n👥 Актёры: Марлон Брандо, Аль Пачино",
+                "тёмный рыцарь": "🎬 Тёмный рыцарь (2008)\n⭐ Рейтинг: 9.0/10\n📖 Сюжет: Бэтмен объединяется с полицией, чтобы остановить безумного Джокера, который сеет хаос в Готэме.\n🎭 Жанр: Боевик, Триллер\n👥 Актёры: Кристиан Бэйл, Хит Леджер"
             };
             
             const queryLower = query.toLowerCase();
             let found = false;
             for (const [key, value] of Object.entries(topMoviesDB)) {
                 if (queryLower.includes(key)) {
-                    removeTypingIndicator();
                     addAIMessage(value);
                     found = true;
                     break;
@@ -1295,15 +1248,9 @@
             }
             
             if (!found) {
-                removeTypingIndicator();
-                addAIMessage("🎬 Я могу рассказать о любом популярном фильме! Попробуйте спросить:\n• Расскажи про Побег из Шоушенка\n• Что за фильм Интерстеллар?\n• Топ лучших фильмов всех времён\n• Какой фильм с высоким рейтингом посмотреть?");
+                addAIMessage("🎬 Я могу рассказать о многих фильмах!\n\nПопулярные фильмы с высоким рейтингом:\n1. Побег из Шоушенка (9.3)\n2. Крёстный отец (9.2)\n3. Тёмный рыцарь (9.0)\n4. Форрест Гамп (8.8)\n5. Начало (8.8)\n\nНапишите название фильма, и я расскажу подробности!");
             }
-            
-        } catch (error) {
-            console.error("AI Error:", error);
-            removeTypingIndicator();
-            addAIMessage("🤖 Немного помогу! Вот несколько фильмов с рейтингом выше 8.0:\n\n1. Побег из Шоушенка (9.3)\n2. Крёстный отец (9.2)\n3. Тёмный рыцарь (9.0)\n4. Форрест Гамп (8.8)\n5. Начало (8.8)\n\nЗадайте конкретный вопрос про любой фильм!");
-        }
+        }, 1000);
     }
 
     aiBtn.addEventListener('click', () => {
@@ -1322,7 +1269,6 @@
         if (e.key === 'Enter') askAICinema(aiInput.value);
     });
 
-    // Обработчики событий
     document.getElementById('findBtn').onclick = performSearch;
     document.getElementById('randomBtn').onclick = randomMovie;
     document.getElementById('resetFinderBtn').onclick = () => {
