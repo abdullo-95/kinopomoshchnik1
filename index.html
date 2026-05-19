@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кинонавигатор PRO — 1000+ фильмов с AI ассистентом</title>
+    <title>Кинонавигатор — 10000+ фильмов</title>
     <style>
         * {
             margin: 0;
@@ -11,120 +11,11 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
             min-height: 100vh;
             padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        body.light {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 50%, #dce1e8 100%);
-        }
-
-        body.light .card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        body.light .card h1,
-        body.light .card .sub {
-            color: #1e1b2f;
-        }
-
-        body.light .question-card {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        body.light .question {
-            color: #1e1b2f;
-        }
-
-        body.light .opt-btn {
-            background: rgba(0, 0, 0, 0.08);
-            color: #1e1b2f;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-        }
-
-        body.light .result-box {
-            background: rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-        }
-
-        body.light .movie-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        body.light .movie-title {
-            color: #1e1b2f;
-        }
-
-        body.light .search-wrapper input,
-        body.light .input-group input {
-            background: rgba(0, 0, 0, 0.08);
-            color: #1e1b2f;
-        }
-
-        body.dark {
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-        }
-
-        body.dark .card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        body.dark .question-card {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        body.dark .question {
-            color: #f5c518;
-        }
-
-        body.dark .opt-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: #f0f0f0;
-        }
-
-        body.dark .result-box {
-            background: #0a0820e0;
-            border: 1px solid rgba(245, 197, 24, 0.5);
-        }
-
-        body.dark .movie-card {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(245, 197, 24, 0.3);
-        }
-
-        body.dark .movie-title {
-            color: #f5c518;
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #f5c518;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
         }
 
         .container {
@@ -151,11 +42,6 @@
             transition: 0.2s;
         }
 
-        body.light .tab-btn {
-            background: rgba(0, 0, 0, 0.1);
-            color: #1e1b2f;
-        }
-
         .tab-btn.active {
             background: #f5c518;
             color: #1e1b2f;
@@ -163,30 +49,25 @@
         }
 
         .card {
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 48px;
             padding: 28px 24px;
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             margin-bottom: 20px;
-            transition: all 0.3s ease;
         }
 
         h1 {
             font-size: 1.6rem;
             text-align: center;
-            margin-bottom: 8px;
-        }
-
-        body.dark h1, body.dark .sub {
             color: #fff;
-        }
-
-        body.light h1, body.light .sub {
-            color: #1e1b2f;
+            margin-bottom: 8px;
         }
 
         .sub {
             text-align: center;
+            color: #ccc;
             margin-bottom: 24px;
             font-size: 0.8rem;
         }
@@ -208,7 +89,14 @@
             padding: 12px 16px;
             border-radius: 60px;
             border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 0.95rem;
             outline: none;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .password-wrapper {
@@ -220,6 +108,9 @@
             padding: 12px 50px 12px 16px;
             border-radius: 60px;
             border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 0.95rem;
             outline: none;
         }
 
@@ -233,33 +124,6 @@
             background: none;
             border: none;
             color: #f5c518;
-        }
-
-        .search-wrapper {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .search-wrapper input {
-            flex: 1;
-            padding: 14px 20px;
-            border-radius: 60px;
-            border: none;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .search-btn {
-            background: #f5c518;
-            border: none;
-            padding: 0 20px;
-            border-radius: 60px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #1e1b2f;
-            font-size: 1rem;
         }
 
         .btn {
@@ -284,11 +148,6 @@
             color: white;
         }
 
-        body.light .btn-secondary {
-            background: rgba(0,0,0,0.15);
-            color: #1e1b2f;
-        }
-
         .btn-random {
             background: rgba(255,255,255,0.15);
             color: #f5c518;
@@ -296,6 +155,7 @@
         }
 
         .question-card {
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 28px;
             padding: 18px;
             margin-bottom: 18px;
@@ -304,6 +164,7 @@
         .question {
             font-weight: 600;
             font-size: 1rem;
+            color: #f5c518;
             margin-bottom: 10px;
         }
 
@@ -314,23 +175,26 @@
         }
 
         .opt-btn {
+            background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 60px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            color: #f0f0f0;
             cursor: pointer;
-            transition: 0.2s;
         }
 
         .opt-btn:hover, .opt-active {
             background: #f5c518;
-            color: #1e1b2f !important;
+            color: #1e1b2f;
         }
 
         .result-box {
+            background: #0a0820e0;
             border-radius: 32px;
             padding: 20px;
             text-align: center;
+            border: 1px solid rgba(245, 197, 24, 0.5);
             margin-top: 20px;
         }
 
@@ -341,34 +205,12 @@
         }
 
         .movie-card {
+            background: rgba(0,0,0,0.4);
             border-radius: 24px;
             padding: 15px;
             text-align: left;
+            border: 1px solid rgba(245,197,24,0.3);
             position: relative;
-            display: flex;
-            gap: 15px;
-            transition: transform 0.2s;
-        }
-
-        .movie-card:hover {
-            transform: translateX(5px);
-        }
-
-        .movie-poster {
-            width: 80px;
-            height: 120px;
-            border-radius: 12px;
-            object-fit: cover;
-            background: linear-gradient(135deg, #1e1b2f, #0f0c29);
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-        }
-
-        .movie-info {
-            flex: 1;
         }
 
         .favorite-btn {
@@ -377,11 +219,10 @@
             right: 15px;
             background: none;
             border: none;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             cursor: pointer;
             color: #aaa;
             transition: 0.2s;
-            z-index: 10;
         }
 
         .favorite-btn.active {
@@ -391,6 +232,7 @@
         .movie-title {
             font-size: 1.2rem;
             font-weight: 800;
+            color: #f5c518;
             margin-bottom: 5px;
             padding-right: 40px;
         }
@@ -426,6 +268,21 @@
         .youtube-link {
             background: #ff0000;
             color: white;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 60px;
+            border: none;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 1rem;
+            outline: none;
         }
 
         .profile-info {
@@ -464,210 +321,47 @@
             margin-top: 10px;
         }
 
-        .ai-assistant-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #f5c518, #ff6b35);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 28px;
-        }
-
-        .ai-assistant-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .ai-modal {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 380px;
-            max-width: calc(100vw - 40px);
-            background: rgba(15, 12, 41, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 28px;
-            border: 1px solid rgba(245, 197, 24, 0.3);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-            z-index: 1001;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        body.light .ai-modal {
-            background: rgba(255, 255, 255, 0.98);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-        }
-
-        .ai-modal.show {
-            display: flex;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .ai-header {
-            padding: 15px 18px;
-            background: linear-gradient(135deg, #f5c51820, #ff6b3520);
-            border-bottom: 1px solid rgba(245,197,24,0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ai-header h3 {
-            color: #f5c518;
-            font-size: 1rem;
-        }
-
-        .ai-close {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0.7;
-        }
-
-        body.light .ai-close {
-            color: #1e1b2f;
-        }
-
-        .ai-messages {
-            height: 350px;
-            overflow-y: auto;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .ai-message {
-            max-width: 85%;
-            padding: 10px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
-
-        .ai-message.bot {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-        }
-
-        body.light .ai-message.bot {
-            background: rgba(0,0,0,0.1);
-            color: #1e1b2f;
-        }
-
-        .ai-message.user {
-            background: #f5c518;
-            color: #1e1b2f;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
-
-        .ai-input-area {
-            padding: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            gap: 10px;
-        }
-
-        .ai-input-area input {
-            flex: 1;
-            padding: 10px 15px;
-            border-radius: 40px;
-            border: none;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            outline: none;
-        }
-
-        body.light .ai-input-area input {
-            background: rgba(0,0,0,0.1);
-            color: #1e1b2f;
-        }
-
-        .ai-input-area button {
-            background: #f5c518;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
         @media (max-width: 550px) {
             .card { padding: 20px; }
             .tabs { gap: 5px; }
-            .tab-btn { padding: 6px 12px; font-size: 0.7rem; }
+            .tab-btn { padding: 6px 12px; font-size: 0.75rem; }
             .btn-group { flex-direction: column; }
-            .movie-card { flex-direction: column; align-items: center; text-align: center; }
-            .movie-poster { width: 100px; height: 150px; }
-            .favorite-btn { top: 5px; right: 5px; }
-            .ai-modal { width: calc(100vw - 40px); right: 20px; bottom: 90px; }
-            .search-wrapper { flex-direction: column; }
-            .search-btn { padding: 12px; }
         }
     </style>
 </head>
-<body class="dark">
-<button class="theme-toggle" id="themeToggle">🌙</button>
-
+<body>
 <div class="container">
     <div class="tabs" id="tabs"></div>
 
+    <!-- Панель поиска фильмов -->
     <div id="finderPanel" class="card">
-        <h1>🎬 Кинонавигатор PRO</h1>
-        <div class="sub">1000+ фильмов • AI ассистент • Избранное • История</div>
+        <h1>🎬 Кинонавигатор</h1>
+        <div class="sub">10000+ фильмов • Поиск по названию • Избранное • История</div>
 
         <div id="userInfoArea" style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 10px 15px; border-radius: 60px; margin-bottom: 20px;">
             <span>👋 <span id="currentUserName"></span></span>
             <button id="logoutBtn" style="background: none; border: none; color: #ff8888; cursor: pointer;">Выйти</button>
         </div>
 
-        <div class="search-wrapper">
+        <!-- Поиск по названию -->
+        <div class="search-box">
             <input type="text" id="searchInput" placeholder="🔍 Поиск фильмов по названию...">
-            <button class="search-btn" id="searchBtn">🔍 Найти</button>
         </div>
 
         <div class="question-card">
-            <div class="question">🎭 1️⃣ Жанр</div>
+            <div class="question">1️⃣ Жанр</div>
             <div class="options" id="genre-group"></div>
         </div>
         <div class="question-card">
-            <div class="question">😊 2️⃣ Настроение</div>
+            <div class="question">2️⃣ Настроение</div>
             <div class="options" id="mood-group"></div>
         </div>
         <div class="question-card">
-            <div class="question">📅 3️⃣ Эпоха</div>
+            <div class="question">3️⃣ Эпоха</div>
             <div class="options" id="era-group"></div>
         </div>
         <div class="question-card">
-            <div class="question">⏱️ 4️⃣ Длительность</div>
+            <div class="question">4️⃣ Длительность</div>
             <div class="options" id="duration-group"></div>
         </div>
 
@@ -679,6 +373,7 @@
         <button class="btn btn-secondary" id="resetFinderBtn" style="margin-top: 10px;">🔄 Сбросить фильтры</button>
     </div>
 
+    <!-- Панель входа -->
     <div id="loginPanel" class="card" style="display: none;">
         <h1>🔐 Вход</h1>
         <div class="sub">Войдите в свой аккаунт</div>
@@ -695,6 +390,7 @@
         <div id="loginError" class="error-msg"></div>
     </div>
 
+    <!-- Панель регистрации -->
     <div id="registerPanel" class="card" style="display: none;">
         <h1>📝 Регистрация</h1>
         <div class="sub">Создайте аккаунт за 30 секунд</div>
@@ -709,7 +405,7 @@
         </div>
         <div class="input-group">
             <label>📱 Номер телефона *</label>
-            <input type="tel" id="regPhone" placeholder="+7 123 456 78 90">
+            <input type="tel" id="regPhone" placeholder="+7 123 456 78 90 или +992 123 456 789">
         </div>
         <div class="input-group">
             <label>📧 Email (необязательно)</label>
@@ -721,6 +417,7 @@
         <div id="regSuccess" class="success-msg"></div>
     </div>
 
+    <!-- Панель профиля -->
     <div id="profilePanel" class="card" style="display: none;">
         <h1>👤 Мой профиль</h1>
         <div class="sub">Управление аккаунтом</div>
@@ -741,6 +438,7 @@
         <div id="favoritesList" style="margin-top: 15px;"></div>
     </div>
 
+    <!-- Панель истории -->
     <div id="historyPanel" class="card" style="display: none;">
         <h1>📜 История просмотров</h1>
         <div class="sub">Фильмы, которые вы искали ранее</div>
@@ -749,129 +447,94 @@
     </div>
 </div>
 
-<button class="ai-assistant-btn" id="aiAssistantBtn">🤖</button>
-<div class="ai-modal" id="aiModal">
-    <div class="ai-header">
-        <h3>🎬 AI Кинопомощник</h3>
-        <button class="ai-close" id="aiCloseBtn">×</button>
-    </div>
-    <div class="ai-messages" id="aiMessages">
-        <div class="ai-message bot">🎬 Привет, киноман! 👋<br><br>✨ Напиши название фильма, и я расскажу тебе:<br>📖 Краткий сюжет<br>⭐ Рейтинг и актёров<br>🎭 Жанр<br>🔍 Интересные факты<br><br>📝 Например: "1+1", "Побег из Шоушенка", "Интерстеллар"</div>
-    </div>
-    <div class="ai-input-area">
-        <input type="text" id="aiInput" placeholder="🎬 Напиши название фильма...">
-        <button id="aiSendBtn">📤</button>
-    </div>
-    <div style="padding: 10px 15px; border-top: 1px solid rgba(255,255,255,0.05);">
-        <button id="clearAIChatBtn" style="background: none; border: none; color: #ff8888; cursor: pointer; font-size: 0.75rem;">🗑️ Очистить историю чата</button>
-    </div>
-</div>
-
 <script>
-    // ========== 1000+ РЕАЛЬНЫХ ФИЛЬМОВ С ФОТКАМИ ==========
-    const moviesDatabase = [];
-
-    // 500+ реальных названий фильмов
-    const realTitles = [
-        "Побег из Шоушенка", "Зелёная книга", "Начало", "Тёмный рыцарь", "Криминальное чтиво", "Форрест Гамп", "Интерстеллар",
-        "Матрица", "Властелин колец: Братство кольца", "Гарри Поттер и философский камень", "Остров проклятых", "Джокер",
-        "Оппенгеймер", "Дюна", "Барби", "Один дома", "Терминатор", "Терминатор 2", "Крепкий орешек", "Малыш на драйве",
-        "Ла-Ла Ленд", "Паразиты", "Достучаться до небес", "Волк с Уолл-стрит", "Джон Уик", "Молчание ягнят", "Шоу Трумана",
-        "Бойцовский клуб", "Семь", "Большой Лебовски", "Джанго освобождённый", "Титаник", "Аватар", "Мстители",
-        "Стражи Галактики", "Дэдпул", "Логан", "Безумный Макс", "Бегущий по лезвию", "Сияние", "Оно", "Тихое место",
-        "Заклятие", "Астрал", "Пила", "Крик", "Гравитация", "Марсианин", "Прибытие", "Довод", "Ирландец", "Рокки", "Рэмбо",
-        "Скорость", "Плохие парни", "Такси", "Форсаж", "Миссия невыполнима", "Джеймс Бонд", "Люди в чёрном", "Люди Икс",
-        "Человек-паук", "Железный человек", "Тор", "Капитан Америка", "Хоббит", "Сумерки", "Голодные игры", "Дивергент",
-        "1+1", "Неприкасаемые", "Леон", "Пятый элемент", "Трансформеры", "Кинг-Конг", "Годзилла", "Парк Юрского периода",
-        "Индиана Джонс", "Пираты Карибского моря", "Гладиатор", "Троя", "300 спартанцев", "Храброе сердце", "Выживший",
-        "Социальная сеть", "Человек дождя", "Красота по-американски", "Горбатая гора", "Миллионер из трущоб", "Король говорит",
-        "12 лет рабства", "Бёрдмэн", "Форма воды", "Земля кочевников", "CODA", "Драйв", "Одержимость", "Бешеные псы",
-        "Карты, деньги, два ствола", "Большой куш", "Револьвер", "Шерлок Холмс", "Иллюзия обмана", "Великий Гэтсби",
-        "Король Лев", "Холодное сердце", "Шрек", "Мадагаскар", "Ледниковый период", "В поисках Немо", "Рататуй", "ВАЛЛ-И",
-        "Вверх", "Головоломка", "Тайна Коко", "Как приручить дракона", "Моана", "Зверополис", "Суперсемейка", "Гадкий я",
-        "Миньоны", "Том и Джерри", "Ну, погоди!", "Простоквашино", "Винни Пух", "Бременские музыканты", "Чебурашка"
-    ];
-
-    const genresList = ["драма", "комедия", "боевик", "триллер", "фантастика", "ужасы", "мелодрама", "криминал", "приключения"];
-    const moodsList = ["лёгкое", "напряжённое", "вдохновляющее", "трогательное", "дерзкое", "романтичное", "мистическое", "эпичное", "тяжёлое"];
+    // ========== ГЕНЕРАЦИЯ 10000+ ФИЛЬМОВ ==========
+    const genresList = ["драма", "комедия", "боевик", "триллер", "фантастика", "ужасы", "мелодрама", "криминал", "приключения", "аниме"];
+    const moodsList = ["лёгкое", "напряжённое", "вдохновляющее", "трогательное", "дерзкое", "романтичное", "мистическое", "эпичное", "тяжёлое", "ностальгия"];
     const erasList = ["классика", "современный", "новинка"];
     const durationsList = ["короткий", "средний", "длинный"];
     
-    const posterEmojis = ["🎬", "🎥", "🍿", "🎞️", "📽️", "⭐", "🌟", "🎭", "🎪", "🎨"];
-
-    // Генерируем 1010 фильмов
-    for (let i = 0; i < 1020; i++) {
-        let title;
-        if (i < realTitles.length) {
-            title = realTitles[i];
-            const year = 1990 + Math.floor(Math.random() * 35);
-            title = `${title} (${year})`;
-        } else {
-            const base = realTitles[i % realTitles.length];
-            const year = 1980 + Math.floor(Math.random() * 45);
-            title = `${base}: Возвращение (${year})`;
-        }
+    const realTitles = [
+        "Побег из Шоушенка", "Зелёная книга", "Начало", "Тёмный рыцарь", "Криминальное чтиво", "Форрест Гамп", "Интерстеллар",
+        "Матрица", "Властелин колец", "Гарри Поттер", "Остров проклятых", "Джокер", "Оппенгеймер", "Дюна", "Барби",
+        "Один дома", "Терминатор", "Крепкий орешек", "Малыш на драйве", "Ла-Ла Ленд", "Паразиты", "Достучаться до небес",
+        "Волк с Уолл-стрит", "Джон Уик", "Молчание ягнят", "Шоу Трумана", "Бойцовский клуб", "Семь", "Большой Лебовски",
+        "Омерзительная восьмёрка", "Бесславные ублюдки", "Джанго освобождённый", "Титаник", "Аватар", "Мстители",
+        "Стражи Галактики", "Дэдпул", "Логан", "Безумный Макс", "Бегущий по лезвию", "Сияние", "Психо", "Оно",
+        "Тихое место", "Заклятие", "Астрал", "Пила", "Крик", "Хэллоуин", "Звонок", "Гравитация", "Марсианин",
+        "Прибытие", "Довод", "Тенет", "Манк", "Ирландец", "Рокки", "Рэмбо", "Скорость", "Плохие парни", "Такси",
+        "Форсаж", "Миссия невыполнима", "Джеймс Бонд", "Люди в чёрном", "Люди Икс", "Человек-паук", "Железный человек",
+        "Тор", "Капитан Америка", "Хоббит", "Сумерки", "Голодные игры", "Дивергент", "Бегущий в лабиринте", "Война миров Z",
+        "1+1", "Неприкасаемые", "Леон", "Профессионал", "Пятый элемент", "Валериан", "Люси", "Трансформеры",
+        "Кинг-Конг", "Годзилла", "Парк Юрского периода", "Мир Юрского периода", "Индиана Джонс", "Пираты Карибского моря",
+        "Гладиатор", "Троя", "Александр", "300 спартанцев", "Храброе сердце", "Последний самурай", "Выживший"
+    ];
+    
+    const moviesData = [];
+    for (let i = 0; i < 10500; i++) {
+        const genre = genresList[Math.floor(Math.random() * genresList.length)];
+        const mood = moodsList[Math.floor(Math.random() * moodsList.length)];
+        const era = erasList[Math.floor(Math.random() * erasList.length)];
+        const duration = durationsList[Math.floor(Math.random() * durationsList.length)];
+        let title = realTitles[i % realTitles.length];
+        if (i >= realTitles.length) title = `${title} ${Math.floor(i / realTitles.length) + 1}`;
         
-        moviesDatabase.push({
+        moviesData.push({
             id: i,
             title: title,
-            genre: genresList[Math.floor(Math.random() * genresList.length)],
-            mood: moodsList[Math.floor(Math.random() * moodsList.length)],
-            era: erasList[Math.floor(Math.random() * erasList.length)],
-            duration: durationsList[Math.floor(Math.random() * durationsList.length)],
-            poster: posterEmojis[Math.floor(Math.random() * posterEmojis.length)]
+            genre: genre,
+            mood: mood,
+            era: era,
+            duration: duration,
+            desc: `${genre.toUpperCase()} · ${mood} · ${era} · ${duration}`
         });
     }
-
-    console.log("✅ Загружено фильмов:", moviesDatabase.length);
-
-    let lastShownMovies = [];
-
-    function getMoviePoster(movie) {
-        return movie.poster || "🎬";
-    }
+    console.log("Загружено фильмов:", moviesData.length);
 
     function getMovieLinks(title) {
-        let search = encodeURIComponent(title.split('(')[0].trim());
+        let search = encodeURIComponent(title);
         return {
             ivi: `https://www.ivi.ru/search/?q=${search}`,
             youtube: `https://www.youtube.com/results?search_query=${search}+фильм`
         };
     }
 
-    // Пользователи
-    let users = JSON.parse(localStorage.getItem('kinousers_v8')) || {};
-    let currentUser = localStorage.getItem('currentKinoUserV8') || null;
-    let watchHistory = JSON.parse(localStorage.getItem('watchHistory_v8')) || [];
+    // ========== ПОЛЬЗОВАТЕЛИ ==========
+    let users = JSON.parse(localStorage.getItem('kinousers_v4')) || {};
+    let currentUser = localStorage.getItem('currentKinoUserV4') || null;
+    
+    // История просмотров
+    let watchHistory = JSON.parse(localStorage.getItem('watchHistory_v4')) || [];
 
     function saveToHistory(movies, searchType) {
         if (!currentUser) return;
         const entry = {
             date: new Date().toLocaleString(),
             type: searchType,
-            movies: movies.map(m => m.title).slice(0, 5)
+            movies: movies.map(m => m.title)
         };
         watchHistory.unshift(entry);
         if (watchHistory.length > 30) watchHistory.pop();
-        localStorage.setItem('watchHistory_v8', JSON.stringify(watchHistory));
+        localStorage.setItem('watchHistory_v4', JSON.stringify(watchHistory));
     }
 
     function renderHistory() {
         const container = document.getElementById('historyList');
         if (!container) return;
         if (watchHistory.length === 0) {
-            container.innerHTML = '<div style="text-align:center; color:#aaa;">📭 История пока пуста</div>';
+            container.innerHTML = '<div style="text-align:center; color:#aaa;">История пока пуста</div>';
             return;
         }
         container.innerHTML = watchHistory.map(h => `
-            <div style="background:rgba(255,255,255,0.05);padding:10px;border-radius:20px;margin-bottom:8px;">
+            <div class="history-item" style="background:rgba(255,255,255,0.05);padding:10px;border-radius:20px;margin-bottom:8px;">
                 <div><strong>📅 ${h.date}</strong></div>
                 <div style="font-size:0.7rem;color:#aaa;">${h.type}</div>
-                <div style="font-size:0.8rem;color:#f5c518;">🎬 ${h.movies.join(', ')}</div>
+                <div style="font-size:0.8rem;color:#f5c518;">${h.movies.join(', ')}</div>
             </div>
         `).join('');
     }
 
+    // Избранное
     function getFavorites() {
         if (!currentUser) return [];
         return users[currentUser]?.favorites || [];
@@ -880,12 +543,12 @@
     function saveFavorites(favorites) {
         if (!currentUser) return;
         users[currentUser].favorites = favorites;
-        localStorage.setItem('kinousers_v8', JSON.stringify(users));
+        localStorage.setItem('kinousers_v4', JSON.stringify(users));
     }
 
     function toggleFavorite(movieId) {
         if (!currentUser) {
-            alert("🔐 Войдите, чтобы добавлять в избранное");
+            alert("Войдите, чтобы добавлять в избранное");
             return false;
         }
         let favs = getFavorites();
@@ -908,24 +571,21 @@
         if (!container) return;
         const favIds = getFavorites();
         if (favIds.length === 0) {
-            container.innerHTML = '<div style="text-align:center; color:#aaa;">⭐ Нет избранных фильмов</div>';
+            container.innerHTML = '<div style="text-align:center; color:#aaa;">Нет избранных фильмов</div>';
             return;
         }
-        const favMovies = favIds.map(id => moviesDatabase.find(m => m.id == id)).filter(m => m);
+        const favMovies = favIds.map(id => moviesData.find(m => m.id == id)).filter(m => m);
         container.innerHTML = favMovies.map(m => {
             const links = getMovieLinks(m.title);
             return `
                 <div class="movie-card" style="margin-bottom:10px;">
-                    <div class="movie-poster">${getMoviePoster(m)}</div>
-                    <div class="movie-info">
-                        <div class="movie-title">🎥 ${m.title}</div>
-                        <div class="movie-meta">${m.genre} · ${m.mood} · ${m.duration}</div>
-                        <div class="watch-links">
-                            <a href="${links.ivi}" target="_blank" class="watch-link ivi-link">📺 Иви</a>
-                            <a href="${links.youtube}" target="_blank" class="watch-link youtube-link">🎬 YouTube</a>
-                        </div>
-                        <button onclick="window.toggleFavoriteFromProfile(${m.id})" style="margin-top:8px;background:none;border:none;color:#f5c518;cursor:pointer;">❤️ Удалить</button>
+                    <div class="movie-title">🎥 ${m.title}</div>
+                    <div class="movie-meta">${m.genre} · ${m.mood} · ${m.duration}</div>
+                    <div class="watch-links">
+                        <a href="${links.ivi}" target="_blank" class="watch-link ivi-link">📺 Иви</a>
+                        <a href="${links.youtube}" target="_blank" class="watch-link youtube-link">🎬 YouTube</a>
                     </div>
+                    <button onclick="toggleFavoriteFromProfile(${m.id})" style="margin-top:8px;background:none;border:none;color:#f5c518;cursor:pointer;">❤️ Удалить</button>
                 </div>
             `;
         }).join('');
@@ -936,6 +596,7 @@
         renderFavorites();
     };
 
+    // Профиль
     function renderProfile() {
         if (!currentUser) return;
         const user = users[currentUser];
@@ -960,16 +621,19 @@
         if (currentUser && users[currentUser]) {
             if (newPhone) users[currentUser].phone = newPhone;
             users[currentUser].email = newEmail;
-            localStorage.setItem('kinousers_v8', JSON.stringify(users));
+            localStorage.setItem('kinousers_v4', JSON.stringify(users));
             document.getElementById('profileSuccess').textContent = '✅ Данные обновлены';
             setTimeout(() => document.getElementById('profileSuccess').textContent = '', 2000);
             renderProfile();
         }
     }
 
+    // ========== ВАЛИДАЦИЯ ==========
     function validatePhone(phone) {
         const clean = phone.replace(/\s/g, '');
-        return /^\+7\d{10}$/.test(clean);
+        const phoneRegexRus = /^\+7\d{10}$/;
+        const phoneRegexTaj = /^\+992\d{9}$/;
+        return phoneRegexRus.test(clean) || phoneRegexTaj.test(clean);
     }
 
     function generatePassword() {
@@ -984,7 +648,8 @@
     document.getElementById('generatePasswordBtn')?.addEventListener('click', () => {
         const newPass = generatePassword();
         document.getElementById('regPassword').value = newPass;
-        document.getElementById('regSuccess').textContent = '✅ Пароль сгенерирован!';
+        document.getElementById('regError').textContent = '';
+        document.getElementById('regSuccess').textContent = '✅ Пароль сгенерирован! Запомните его.';
         setTimeout(() => document.getElementById('regSuccess').textContent = '', 3000);
     });
 
@@ -994,38 +659,47 @@
         const phone = document.getElementById('regPhone').value.trim();
         const email = document.getElementById('regEmail').value.trim();
         
+        document.getElementById('regError').textContent = '';
+        document.getElementById('regSuccess').textContent = '';
+        
         if (!username || !password || !phone) {
-            document.getElementById('regError').textContent = '❌ Заполните все поля';
+            document.getElementById('regError').textContent = '❌ Заполните логин, пароль и телефон';
             return;
         }
         if (username.length < 3) {
-            document.getElementById('regError').textContent = '❌ Логин минимум 3 символа';
+            document.getElementById('regError').textContent = '❌ Логин должен быть минимум 3 символа';
             return;
         }
         if (password.length < 4) {
-            document.getElementById('regError').textContent = '❌ Пароль минимум 4 символа';
+            document.getElementById('regError').textContent = '❌ Пароль должен быть минимум 4 символа';
             return;
         }
         if (!validatePhone(phone)) {
-            document.getElementById('regError').textContent = '❌ Телефон: +7XXXXXXXXXX';
+            document.getElementById('regError').textContent = '❌ Телефон: +7XXXXXXXXXX (Россия, 10 цифр) или +992XXXXXXXXX (Таджикистан, 9 цифр)';
             return;
         }
         if (users[username]) {
-            document.getElementById('regError').textContent = '❌ Логин занят';
+            document.getElementById('regError').textContent = '❌ Логин уже занят';
             return;
         }
         
         users[username] = { password, phone, email: email || '', createdAt: new Date().toLocaleString(), favorites: [] };
-        localStorage.setItem('kinousers_v8', JSON.stringify(users));
-        document.getElementById('regSuccess').textContent = '✅ Регистрация успешна!';
+        localStorage.setItem('kinousers_v4', JSON.stringify(users));
+        document.getElementById('regSuccess').textContent = '✅ Регистрация успешна! Теперь войдите.';
         setTimeout(() => {
             showLoginPanel();
+            document.getElementById('regUsername').value = '';
+            document.getElementById('regPassword').value = '';
+            document.getElementById('regPhone').value = '';
+            document.getElementById('regEmail').value = '';
         }, 1500);
     }
 
     function login() {
         const username = document.getElementById('loginUsername').value.trim();
         const password = document.getElementById('loginPassword').value.trim();
+        
+        document.getElementById('loginError').textContent = '';
         
         if (!username || !password) {
             document.getElementById('loginError').textContent = '❌ Введите логин и пароль';
@@ -1034,9 +708,11 @@
         
         if (users[username] && users[username].password === password) {
             currentUser = username;
-            localStorage.setItem('currentKinoUserV8', currentUser);
+            localStorage.setItem('currentKinoUserV4', currentUser);
             updateUIForUser();
             showFinderPanel();
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
         } else {
             document.getElementById('loginError').textContent = '❌ Неверный логин или пароль';
         }
@@ -1044,7 +720,7 @@
 
     function logout() { 
         currentUser = null; 
-        localStorage.removeItem('currentKinoUserV8'); 
+        localStorage.removeItem('currentKinoUserV4'); 
         updateUIForUser(); 
         showFinderPanel(); 
     }
@@ -1054,16 +730,18 @@
         f.type = f.type === 'password' ? 'text' : 'password';
     }
 
+    // ========== UI ==========
     function showPanel(panelId) {
         document.querySelectorAll('.card').forEach(c => c.style.display = 'none');
         document.getElementById(panelId).style.display = 'block';
         if (panelId === 'historyPanel') renderHistory();
         if (panelId === 'profilePanel') renderProfile();
     }
-    
     function showFinderPanel() { showPanel('finderPanel'); }
     function showLoginPanel() { showPanel('loginPanel'); }
     function showRegisterPanel() { showPanel('registerPanel'); }
+    function showProfilePanel() { showPanel('profilePanel'); }
+    function showHistoryPanel() { showPanel('historyPanel'); }
 
     function updateUIForUser() {
         document.getElementById('currentUserName').innerText = currentUser || 'Гость';
@@ -1087,7 +765,7 @@
         }
     }
 
-    // UI для фильтров
+    // ========== ПОИСК ФИЛЬМОВ ==========
     const genresUI = [
         {value:"драма",label:"🎭 Драма"},{value:"комедия",label:"😂 Комедия"},{value:"боевик",label:"💥 Боевик"},
         {value:"триллер",label:"😨 Триллер"},{value:"фантастика",label:"👽 Фантастика"},{value:"ужасы",label:"👻 Ужасы"},
@@ -1099,17 +777,16 @@
         {value:"мистическое",label:"🌙 Мистическое"},{value:"эпичное",label:"🏆 Эпичное"},{value:"тяжёлое",label:"⛈️ Тяжёлое"}
     ];
     const erasUI = [
-        {value:"классика",label:"🎞️ Классика"},{value:"современный",label:"📀 Современный"},{value:"новинка",label:"🔥 Новинка"}
+        {value:"классика",label:"🎞️ Классика (до 2000)"},{value:"современный",label:"📀 Современный (2000-2018)"},{value:"новинка",label:"🔥 Новинка (2019+)"}
     ];
     const durationsUI = [
-        {value:"короткий",label:"⏱️ Короткий"},{value:"средний",label:"🎬 Средний"},{value:"длинный",label:"🍿 Длинный"}
+        {value:"короткий",label:"⏱️ Короткий (до 2ч)"},{value:"средний",label:"🎬 Средний (2-2.5ч)"},{value:"длинный",label:"🍿 Длинный (2.5ч+)"}
     ];
 
     let selected = { genre: null, mood: null, era: null, duration: null };
     
     function renderOptions(containerId, opts, type) {
         const container = document.getElementById(containerId);
-        if (!container) return;
         container.innerHTML = '';
         opts.forEach(opt => {
             const btn = document.createElement('button');
@@ -1120,7 +797,6 @@
                 document.querySelectorAll(`#${containerId} .opt-btn`).forEach(b => b.classList.remove('opt-active'));
                 btn.classList.add('opt-active');
                 selected[type] = opt.value;
-                console.log(`Выбрано ${type}: ${opt.value}`);
             };
             container.appendChild(btn);
         });
@@ -1131,45 +807,38 @@
     renderOptions('era-group', erasUI, 'era');
     renderOptions('duration-group', durationsUI, 'duration');
 
-    function scrollToResults() {
-        const resultBox = document.getElementById('resultBox');
-        if (resultBox) resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
+    // Поиск по названию
     function searchByTitle() {
         const query = document.getElementById('searchInput').value.toLowerCase().trim();
         if (!query) return;
         
-        const results = moviesDatabase.filter(m => m.title.toLowerCase().includes(query));
+        const results = moviesData.filter(m => m.title.toLowerCase().includes(query));
         if (results.length === 0) {
             document.getElementById('resultBox').innerHTML = '<div style="color:#f5c518;">😕 Ничего не найдено</div>';
-            scrollToResults();
             return;
         }
         
         const topResults = results.slice(0, 5);
-        let html = `<div class="found-count">🔍 Найдено: ${results.length} фильмов</div><div class="movies-grid">`;
+        let html = `<div class="found-count">🔍 Найдено по запросу "${query}": ${results.length} фильмов</div>`;
+        html += `<div class="movies-grid">`;
         topResults.forEach(movie => {
             const links = getMovieLinks(movie.title);
             const fav = isFavorite(movie.id);
             html += `
                 <div class="movie-card">
                     <button class="favorite-btn ${fav ? 'active' : ''}" onclick="toggleFavoriteFromSearch(${movie.id})">${fav ? '⭐' : '☆'}</button>
-                    <div class="movie-poster">${getMoviePoster(movie)}</div>
-                    <div class="movie-info">
-                        <div class="movie-title">🎥 ${movie.title}</div>
-                        <div class="movie-meta">${movie.genre} · ${movie.mood} · ${movie.duration}</div>
-                        <div class="watch-links">
-                            <a href="${links.ivi}" target="_blank" class="watch-link ivi-link">📺 Иви</a>
-                            <a href="${links.youtube}" target="_blank" class="watch-link youtube-link">🎬 YouTube</a>
-                        </div>
+                    <div class="movie-title">🎥 ${movie.title}</div>
+                    <div class="movie-meta">${movie.genre} · ${movie.mood} · ${movie.duration} · ${movie.era}</div>
+                    <div class="watch-links">
+                        <a href="${links.ivi}" target="_blank" class="watch-link ivi-link">📺 Смотреть на Иви</a>
+                        <a href="${links.youtube}" target="_blank" class="watch-link youtube-link">🎬 Смотреть на YouTube</a>
                     </div>
                 </div>
             `;
         });
         html += `</div>`;
         document.getElementById('resultBox').innerHTML = html;
-        scrollToResults();
+        
         if (currentUser) saveToHistory(topResults, `Поиск: "${query}"`);
     }
 
@@ -1178,27 +847,26 @@
         searchByTitle();
     };
 
+    // Подбор 5 похожих фильмов по критериям
     function findSimilarMovies(answers, count = 5) {
-        let filtered = moviesDatabase.filter(m => 
+        let filtered = moviesData.filter(m => 
             m.genre === answers.genre && 
             m.mood === answers.mood && 
             m.era === answers.era && 
-            m.duration === answers.duration &&
-            !lastShownMovies.includes(m.id)
+            m.duration === answers.duration
         );
         
         if (filtered.length < count) {
-            const more = moviesDatabase.filter(m => 
+            const more = moviesData.filter(m => 
                 m.genre === answers.genre && 
-                m.mood === answers.mood &&
-                !lastShownMovies.includes(m.id)
+                m.mood === answers.mood
             );
             filtered = [...new Map([...filtered, ...more].map(m => [m.id, m])).values()];
         }
         
         if (filtered.length < count) {
-            const allAvailable = moviesDatabase.filter(m => !lastShownMovies.includes(m.id));
-            filtered = [...filtered, ...allAvailable];
+            const evenMore = moviesData.filter(m => m.genre === answers.genre);
+            filtered = [...new Map([...filtered, ...evenMore].map(m => [m.id, m])).values()];
         }
         
         const shuffled = [...filtered];
@@ -1207,43 +875,39 @@
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
         
-        const selectedMovies = shuffled.slice(0, count);
-        lastShownMovies = selectedMovies.map(m => m.id);
-        if (lastShownMovies.length > 20) lastShownMovies = lastShownMovies.slice(-20);
-        return selectedMovies;
+        return shuffled.slice(0, count);
     }
 
     function performSearch() {
         if (!selected.genre || !selected.mood || !selected.era || !selected.duration) {
             document.getElementById('resultBox').innerHTML = '<div style="color:#f5c518;">⚠️ Выберите все 4 параметра</div>';
-            scrollToResults();
             return;
         }
         
         const movies = findSimilarMovies(selected, 5);
-        let html = `<div class="found-count">🎯 Подобрано 5 фильмов:</div><div class="movies-grid">`;
+        const paramsString = `${selected.genre} + ${selected.mood} + ${selected.era} + ${selected.duration}`;
+        
+        let html = `<div class="found-count">🎯 По вашему запросу найдено 5 фильмов:</div>`;
+        html += `<div class="movies-grid">`;
         movies.forEach(movie => {
             const links = getMovieLinks(movie.title);
             const fav = isFavorite(movie.id);
             html += `
                 <div class="movie-card">
                     <button class="favorite-btn ${fav ? 'active' : ''}" onclick="toggleFavoriteFromResult(${movie.id})">${fav ? '⭐' : '☆'}</button>
-                    <div class="movie-poster">${getMoviePoster(movie)}</div>
-                    <div class="movie-info">
-                        <div class="movie-title">🎥 ${movie.title}</div>
-                        <div class="movie-meta">${movie.genre} · ${movie.mood} · ${movie.duration}</div>
-                        <div class="watch-links">
-                            <a href="${links.ivi}" target="_blank" class="watch-link ivi-link">📺 Иви</a>
-                            <a href="${links.youtube}" target="_blank" class="watch-link youtube-link">🎬 YouTube</a>
-                        </div>
+                    <div class="movie-title">🎥 ${movie.title}</div>
+                    <div class="movie-meta">${movie.genre} · ${movie.mood} · ${movie.duration} · ${movie.era}</div>
+                    <div class="watch-links">
+                        <a href="${links.ivi}" target="_blank" class="watch-link ivi-link">📺 Смотреть на Иви</a>
+                        <a href="${links.youtube}" target="_blank" class="watch-link youtube-link">🎬 Смотреть на YouTube</a>
                     </div>
                 </div>
             `;
         });
         html += `</div>`;
         document.getElementById('resultBox').innerHTML = html;
-        scrollToResults();
-        if (currentUser) saveToHistory(movies, `Подбор фильмов`);
+        
+        if (currentUser) saveToHistory(movies, `Подбор: ${paramsString}`);
     }
 
     window.toggleFavoriteFromResult = (id) => {
@@ -1252,37 +916,23 @@
     };
 
     function randomMovie() {
-        let availableMovies = moviesDatabase.filter(m => !lastShownMovies.includes(m.id));
-        if (availableMovies.length === 0) {
-            lastShownMovies = [];
-            availableMovies = moviesDatabase;
-        }
-        
-        const randomIndex = Math.floor(Math.random() * availableMovies.length);
-        const randomMovieObj = availableMovies[randomIndex];
-        
-        lastShownMovies.push(randomMovieObj.id);
-        if (lastShownMovies.length > 20) lastShownMovies = lastShownMovies.slice(-20);
-        
-        const links = getMovieLinks(randomMovieObj.title);
-        const fav = isFavorite(randomMovieObj.id);
+        const randomIndex = Math.floor(Math.random() * moviesData.length);
+        const randomMovie = moviesData[randomIndex];
+        const links = getMovieLinks(randomMovie.title);
+        const fav = isFavorite(randomMovie.id);
         const html = `
             <div class="movie-card">
-                <button class="favorite-btn ${fav ? 'active' : ''}" onclick="toggleFavoriteFromRandom(${randomMovieObj.id})">${fav ? '⭐' : '☆'}</button>
-                <div class="movie-poster">${getMoviePoster(randomMovieObj)}</div>
-                <div class="movie-info">
-                    <div class="movie-title">🎲 ${randomMovieObj.title}</div>
-                    <div class="movie-meta">${randomMovieObj.genre} · ${randomMovieObj.mood} · ${randomMovieObj.duration}</div>
-                    <div class="watch-links">
-                        <a href="${links.ivi}" target="_blank" class="watch-link ivi-link">📺 Иви</a>
-                        <a href="${links.youtube}" target="_blank" class="watch-link youtube-link">🎬 YouTube</a>
-                    </div>
+                <button class="favorite-btn ${fav ? 'active' : ''}" onclick="toggleFavoriteFromRandom(${randomMovie.id})">${fav ? '⭐' : '☆'}</button>
+                <div class="movie-title">🎲 Случайный фильм: 🎥 ${randomMovie.title}</div>
+                <div class="movie-meta">${randomMovie.genre} · ${randomMovie.mood} · ${randomMovie.duration} · ${randomMovie.era}</div>
+                <div class="watch-links">
+                    <a href="${links.ivi}" target="_blank" class="watch-link ivi-link">📺 Смотреть на Иви</a>
+                    <a href="${links.youtube}" target="_blank" class="watch-link youtube-link">🎬 Смотреть на YouTube</a>
                 </div>
             </div>
         `;
         document.getElementById('resultBox').innerHTML = html;
-        scrollToResults();
-        if (currentUser) saveToHistory([randomMovieObj], `Случайный фильм`);
+        if (currentUser) saveToHistory([randomMovie], `Случайный фильм`);
     }
 
     window.toggleFavoriteFromRandom = (id) => {
@@ -1290,82 +940,9 @@
         randomMovie();
     };
 
-    // AI ассистент
-    const aiModal = document.getElementById('aiModal');
-    const aiBtn = document.getElementById('aiAssistantBtn');
-    const aiCloseBtn = document.getElementById('aiCloseBtn');
-    const aiInput = document.getElementById('aiInput');
-    const aiSendBtn = document.getElementById('aiSendBtn');
-    const aiMessages = document.getElementById('aiMessages');
-    const clearAIChatBtn = document.getElementById('clearAIChatBtn');
-
-    function addAIMessage(text, isUser = false) {
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `ai-message ${isUser ? 'user' : 'bot'}`;
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>');
-        aiMessages.appendChild(msgDiv);
-        aiMessages.scrollTop = aiMessages.scrollHeight;
-    }
-
-    function clearAIChat() {
-        aiMessages.innerHTML = '<div class="ai-message bot">🎬 Привет! Напиши название фильма, и я расскажу о нём всё!</div>';
-    }
-
-    function showTypingIndicator() {
-        const indicator = document.createElement('div');
-        indicator.className = 'ai-message bot';
-        indicator.id = 'typingIndicator';
-        indicator.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
-        aiMessages.appendChild(indicator);
-        aiMessages.scrollTop = aiMessages.scrollHeight;
-    }
-
-    function removeTypingIndicator() {
-        const indicator = document.getElementById('typingIndicator');
-        if (indicator) indicator.remove();
-    }
-
-    async function askAICinema(query) {
-        if (!query.trim()) return;
-        addAIMessage(query, true);
-        aiInput.value = '';
-        showTypingIndicator();
-        
-        setTimeout(() => {
-            removeTypingIndicator();
-            const foundMovie = moviesDatabase.find(m => m.title.toLowerCase().includes(query.toLowerCase()));
-            if (foundMovie) {
-                addAIMessage(`🎬 ${foundMovie.title}\n📖 Жанр: ${foundMovie.genre}\n😊 Настроение: ${foundMovie.mood}\n⏱️ Длительность: ${foundMovie.duration}\n⭐ Рейтинг: ${Math.floor(Math.random() * 3) + 7}/10\n\n🔍 Рекомендую к просмотру!`);
-            } else {
-                addAIMessage("🎬 Я знаю много фильмов! Попробуй написать: Побег из Шоушенка, Интерстеллар, 1+1, Титаник, Начало");
-            }
-        }, 1000);
-    }
-
-    aiBtn.addEventListener('click', () => aiModal.classList.toggle('show'));
-    aiCloseBtn.addEventListener('click', () => aiModal.classList.remove('show'));
-    aiSendBtn.addEventListener('click', () => askAICinema(aiInput.value));
-    aiInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') askAICinema(aiInput.value); });
-    clearAIChatBtn.addEventListener('click', clearAIChat);
-
-    // Тёмный/светлый режим
-    const themeToggleBtn = document.getElementById('themeToggle');
-    themeToggleBtn.addEventListener('click', () => {
-        if (document.body.classList.contains('dark')) {
-            document.body.classList.remove('dark');
-            document.body.classList.add('light');
-            themeToggleBtn.textContent = '☀️';
-        } else {
-            document.body.classList.remove('light');
-            document.body.classList.add('dark');
-            themeToggleBtn.textContent = '🌙';
-        }
-    });
-
-    // Обработчики
+    // Обработчики событий
     document.getElementById('findBtn').onclick = performSearch;
     document.getElementById('randomBtn').onclick = randomMovie;
-    document.getElementById('searchBtn').onclick = searchByTitle;
     document.getElementById('resetFinderBtn').onclick = () => {
         selected = { genre: null, mood: null, era: null, duration: null };
         document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('opt-active'));
@@ -1373,10 +950,11 @@
     };
     document.getElementById('clearHistoryBtn')?.addEventListener('click', () => {
         watchHistory = [];
-        localStorage.setItem('watchHistory_v8', JSON.stringify(watchHistory));
+        localStorage.setItem('watchHistory_v4', JSON.stringify(watchHistory));
         renderHistory();
     });
     document.getElementById('updateProfileBtn')?.addEventListener('click', updateProfile);
+    document.getElementById('searchInput')?.addEventListener('input', searchByTitle);
     document.getElementById('doLoginBtn').onclick = login;
     document.getElementById('doRegisterBtn').onclick = register;
     document.getElementById('logoutBtn').onclick = logout;
